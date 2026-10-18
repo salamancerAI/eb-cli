@@ -9,3 +9,14 @@ build/
 tmp/
 test*.csv
 oclif.manifest.json
+
+# e-Builder data files (inputs/outputs) — never commit
+*.csv
+*.jsonl
+
+# secrets — never commit
+.env.*
+*.key
+*.pem
+secrets*
+credentials.json
