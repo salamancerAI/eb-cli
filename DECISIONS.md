@@ -151,3 +151,18 @@ updates at a company-owned bucket.
 locally". The original author's commit message only says "better compatibility".
 There is **no evidence yet** that Playwright helps on Chrome Remote Desktop. The branch
 is untested and is kept only so the work isn't lost.
+
+## 2026-10-17 — Auto-update and `eb update` disabled
+
+**Decided:** in the commit "Disable oclif auto-update and eb update command", changed
+`package.json` `oclif.plugins` from `["@oclif/plugin-update"]` to `[]`. oclif no
+longer loads the plugin, so its background auto-update hook never runs and
+`eb update` gives "command update not found".
+**Kept unchanged on purpose:** the `@oclif/plugin-update` dependency (no lockfile change),
+the S3 `oclif.update` block, `scripts/install.sh`, and the inert preparse hook
+`src/hooks/preparse/default-update-channel.ts`. These are flagged in
+`docs/PROJECT_OVERVIEW.md` §7.4 for a later decision.
+**Because:** smallest, easily reversible change that stops any contact with the original
+author's S3 bucket. Teammates update by re-downloading the ZIP.
+**Alternatives considered:** uninstalling the dependency; `EB_DISABLE_AUTOUPDATE=1`
+(can't be relied on for teammates); a company-owned bucket.

@@ -237,6 +237,10 @@ even in `.ts` files; use `import type` for types-only imports; strict TypeScript
   is untested. The plugin honours `EB_DISABLE_AUTOUPDATE=1` (`init.js:18`) as an
   off switch. Flagged only; nothing changed.
 - Until we decide: **update only by re-downloading the repo. Never `eb update`.**
+- **Update (2026-10-17):** disabled in the commit "Disable oclif auto-update and eb update
+  command". `oclif.plugins` is now `[]`, so the auto-update hook no longer runs and
+  `eb update` is "command not found". The S3 block and `install.sh` are unchanged and
+  still flagged.
 - Options to decide later: (a) remove `@oclif/plugin-update` and the `update` block
   so updates are only `git pull`. That's simplest and $0. (b) Point to a bucket your company owns.
 
